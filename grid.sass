@@ -1,0 +1,13 @@
+$colPadding: .5rem
+$gridBreaks: ("xs": 600px, "sm": 800, "md": 1000px, "xl": 1200px, "xxl": 1500px)
+
+@function gridCalc($count)
+  @return 100% /  12 * $count
+
+@each $name, $width in $gridBreaks
+  @media (min-width: $width)
+    @for $i from 12 through 1
+      .col-#{$name}-#{$i}
+        flex: 0 0 gridCalc($i)
+        max-width: gridCalc($i)
+        padding: $colPadding
